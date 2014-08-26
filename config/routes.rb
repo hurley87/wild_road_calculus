@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  
-
-
-
-  
 
   root 'pages#home'
   get 'pages/about'
@@ -12,6 +7,9 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :users
   resources :password_resets
+  resources :courses do 
+    resources :lessons, only: [:create, :destroy, :update]
+  end
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
