@@ -31,6 +31,7 @@ gem 'spring',        group: :development
 
 gem 'bootstrap-sass'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem "sorcery"
 gem "figaro"
 
 # Use ActiveModel has_secure_password

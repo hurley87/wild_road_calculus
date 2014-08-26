@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825213815) do
+ActiveRecord::Schema.define(version: 20140826004456) do
 
   create_table "purchases", force: true do |t|
     t.string   "email"
@@ -25,5 +25,22 @@ ActiveRecord::Schema.define(version: 20140825213815) do
     t.datetime "updated_at"
     t.string   "uuid"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                           null: false
+    t.string   "crypted_password",                null: false
+    t.string   "salt",                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
 
 end
