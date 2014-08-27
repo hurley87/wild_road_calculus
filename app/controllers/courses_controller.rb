@@ -33,6 +33,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:length, :title, :short_description, :youtube, :lessons_attributes: [:title, :time, :description, :short_description])
+    params.require(:course).permit(:length, :title, :short_description, :youtube, :lessons_attributes: [:title, :time, :description, :short_description, :_destroy])
   end
 end
