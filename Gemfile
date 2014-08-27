@@ -37,6 +37,7 @@ gem "cocoon"
 gem 'pry'
 
 gem 'ckeditor', '4.0.4'
+gem 'letter_opener', :group => :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
