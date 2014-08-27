@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826014656) do
+ActiveRecord::Schema.define(version: 20140827145131) do
 
   create_table "courses", force: true do |t|
     t.integer  "length"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140826014656) do
     t.string   "youtube"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "lessons", force: true do |t|
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140826014656) do
     t.string   "short_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
 
   create_table "purchases", force: true do |t|

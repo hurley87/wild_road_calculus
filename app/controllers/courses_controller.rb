@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
+  before_filter :require_login, only: [:new, :edit, :update, :destroy, :create]
   def index
-    @courses = Courses.all
+    @courses = Course.all
   end
 
   def show
@@ -8,16 +9,17 @@ class CoursesController < ApplicationController
   end
 
   def new
-      @course = Course.new
-    @coures.lessons.build
+    @course = Course.new
+    @course.lessons.build
   end
 
   def create
     @course = current_user.courses.build(course_params)
+    @course.user = current_user
     if @course
-      redirect_to coures_path, notice: 'save successful'
+      redirect_to courses_path, notice: 'save successful'
     else
-      :new, notice: 'there was an error'
+      :new
     end
   end
 
@@ -33,6 +35,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:length, :title, :short_description, :youtube, :lessons_attributes: [:title, :time, :description, :short_description, :_destroy])
+    params.require(:course).permit(:length, :title, :short_description, :youtube, lessons_attributes: [:title, :time, :description, :short_description, :_destroy])
   end
 end

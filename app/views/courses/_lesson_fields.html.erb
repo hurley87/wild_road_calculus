@@ -1,39 +1,39 @@
-
+<div class='nested-fields container'>  
   <div class="row">
     <div class="">
-      <%= f.label :amount %>
+      <%= f.label :title %>
     </div>
     <div class="">
-      <%= f.number_field :amount, placeholder: 'Reward amount', min: 1 %>
+      <%= f.text_field :title %>
     </div>
   </div>
   <div class="row">
     <div class="">
-      <%= f.label :description %>
+      <%= f.label :time %>
     </div>
     <div class="">
-      <%= f.text_area :description, placeholder: 'Reward Description' %>
+      <%= f.number_field :time, placeholder: 'Estimated Time to Complete', min: 1 %>
     </div>
   </div>
   <div class="row">
     <div class="">
-      <%= f.label :pledges_left, 'Backers' %>
+      <%= f.label :short_description %>
     </div>
     <div class="">
-      <%= f.text_field :pledges_left, placeholder: 'Max number of backers', min: 1 %>
+      <%= f.text_field :short_description%>
     </div>
   </div>
   <div class="row">
     <div class="">
-      <%= f.label :shipping, 'Does this reward require shipping?' %>
+      <%= f.label :desription, 'Notes' %>
     </div>
     <div class="">
-      <br>
-      <%= f.check_box :shipping %>
+      <%= f.text_area :desription %>
     </div>
   </div>
   <div class="row">
     <div class="">
-      <%= link_to_remove_association 'remove reward' %>
+     <%= link_to_remove_association "remove task", f %>
     </div>
   </div>
+</div>
