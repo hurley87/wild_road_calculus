@@ -36,6 +36,8 @@ gem "figaro"
 gem "cocoon"
 gem 'pry'
 
+gem 'ckeditor', '4.0.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
