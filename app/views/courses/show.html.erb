@@ -1,12 +1,13 @@
 <h1>Courses#show</h1>
 <p>Find me in app/views/courses/show.html.erb</p>
-<div id="player"></div>
+<div data-id='<%= @course.youtube %>' id="player"></div>
 <a href="#" id="test">Test</a>
 
 <% if @lessons %>
 	<% @lessons.each do |lesson| %>
 		<h3><%= lesson.title  %></h3>
 		<p><%= lesson.short_description  %></p>
+		<p data-seek='<%= lesson.time.to_i  %>' class='times'><%= lesson.time.to_i %></p>
 	<% end %>
 <% else %>
 	
@@ -62,24 +63,35 @@
 <% end %>
 
 <script type="text/javascript">
-	  var tag = document.createElement('script');
-        tag.src = "http://www.youtube.com/player_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        var player;
-        function onYouTubePlayerAPIReady() {
-            player = new YT.Player('player', {
-                height: '390',
-                width: '640',
-                videoId: 'u1zgFlCw8Aw'
-            });
-        }
-        $(document).ready(function(){
-            $('#test').click(function(){
-                player.seekTo(25);
-                player.playVideo(); 
-                return false;
-            });
-        });
+	var youtubeId = $('#player').data('id');
+	var seekTo = $('.times').data('seekTo');
+	var tag = document.createElement('script');
+  tag.src = "http://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubePlayerAPIReady() {
+      player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'u1zgFlCw8Aw'
+      });
+  }
+  
+  $(document).ready(function(){
+    $('#test').click(function(){
+        player.seekTo(25);
+        player.playVideo(); 
+        return false;
+    });
+
+    $('.times').click(function(){
+    		var time = $(this).data('seek');
+    		player.seekTo(time);
+        player.playVideo(); 
+        return false;
+    });
+  });
 
 </script>
