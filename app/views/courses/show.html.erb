@@ -1,2 +1,85 @@
 <h1>Courses#show</h1>
 <p>Find me in app/views/courses/show.html.erb</p>
+<div id="player"></div>
+<a href="#" id="test">Test</a>
+
+<% if @lessons %>
+	<% @lessons.each do |lesson| %>
+		<h3><%= lesson.title  %></h3>
+		<p><%= lesson.short_description  %></p>
+	<% end %>
+<% else %>
+	
+<% end %>
+
+<%= form_for [@course, @lesson] do |f| %>
+		
+		<% if @lesson.errors.any? %>
+			<h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this review from being saved:
+			</h2>
+      <ul>
+      <% @lesson.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+		<% end %>
+
+		<div class='container'>  
+		  <div class="row">
+		    <div class="">
+		      <%= f.label :title %>
+		    </div>
+		    <div class="">
+		      <%= f.text_field :title %>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="">
+		      <%= f.label :time %>
+		    </div>
+		    <div class="">
+		      <%= f.number_field :time, placeholder: 'Estimated Time to Complete', min: 1 %>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="">
+		      <%= f.label :short_description %>
+		    </div>
+		    <div class="">
+		      <%= f.text_field :short_description%>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="">
+		      <%= f.label :desription, 'Notes' %>
+		    </div>
+		    <div class="">
+		      <%= f.text_area :desription, class: 'ckeditor' %>
+		    </div>
+		    	<%= f.submit 'Save'%>
+		  </div>
+		</div>
+<% end %>
+
+<script type="text/javascript">
+	  var tag = document.createElement('script');
+        tag.src = "http://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: 'u1zgFlCw8Aw'
+            });
+        }
+        $(document).ready(function(){
+            $('#test').click(function(){
+                player.seekTo(25);
+                player.playVideo(); 
+                return false;
+            });
+        });
+
+</script>

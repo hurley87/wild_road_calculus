@@ -6,6 +6,8 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @lesson = @course.lessons.build
+    @lessons = @course.lessons
   end
 
   def new
@@ -16,8 +18,8 @@ class CoursesController < ApplicationController
   def create
     @course = current_user.courses.build(course_params)
     @course.user = current_user
-    if @course
-      redirect_to courses_path, notice: 'save successful'
+    if @course.save
+      redirect_to @course, notice: 'save successful'
     else
       :new
     end
@@ -35,6 +37,6 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:length, :title, :short_description, :youtube, lessons_attributes: [:title, :time, :description, :short_description, :_destroy])
+    params.require(:course).permit(:length, :title, :short_description, :youtube)
   end
 end
