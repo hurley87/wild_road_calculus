@@ -1,2 +1,10 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<h1>Pre-Calc Videos</h1>
+
+<% @courses.each do |course| %>
+	<div class='panel panel-default'>
+		<div class="panel-body">
+    	<h2><%= course.title  %></h2>
+    	<h4 class='pull-right'><%= course.short_description %><span><%= link_to 'View Lesson', course_path(course), class: 'btn btn-success'  %></span></h4>
+  	</div>
+	</div>
+<% end %>

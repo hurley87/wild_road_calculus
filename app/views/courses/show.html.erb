@@ -78,7 +78,7 @@
           videoId: 'u1zgFlCw8Aw'
       });
   }
-  
+
   $(document).ready(function(){
     $('#test').click(function(){
         player.seekTo(25);
@@ -90,6 +90,7 @@
     		var time = $(this).data('seek');
     		player.seekTo(time);
         player.playVideo(); 
+        $('html,body').animate({scrollTop: $(this).offset().top}, 800);
         return false;
     });
   });
