@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :charges
   resources :purchases, only: [:show]
   resources :user_sessions
-  resources :users, :path => 'students'
+  resources :users, :path => 'students' do
+    member do
+      get :activate
+    end
+  end 
   resources :password_resets
   resources :courses, :path => 'videos' do 
     resources :lessons, only: [:create, :destroy, :update]
